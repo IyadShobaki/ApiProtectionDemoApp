@@ -10,16 +10,22 @@ namespace ApiProtection.Controllers
    {
       // GET: api/<UsersController>
       [HttpGet]
+      [ResponseCache(Duration = 30, Location = ResponseCacheLocation.Any, NoStore = false)]
+      // ResponseCacheLocation.Any -> not just the client or the server (anywhere)
+      // NoStore = false means yes we need the data to be stored
       public IEnumerable<string> Get()
       {
-         return new string[] { "value1", "value2" };
+         return new string[] { Random.Shared.Next(1, 101).ToString() };
       }
 
       // GET api/<UsersController>/5
       [HttpGet("{id}")]
+      [ResponseCache(Duration = 60 * 60, Location = ResponseCacheLocation.Any, NoStore = false)]
+      // Duration = 60 * 60  for 1 hour   / 60 * 60 * 24 for 1 day 
       public string Get(int id)
       {
-         return "value";
+         // It will get cache by id
+         return $"Random Number: {Random.Shared.Next(1, 101)} for Id {id}";
       }
 
       // POST api/<UsersController>
