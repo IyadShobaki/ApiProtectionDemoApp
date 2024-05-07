@@ -10,7 +10,7 @@ namespace ApiProtection.Controllers
    {
       // GET: api/<UsersController>
       [HttpGet]
-      [ResponseCache(Duration = 30, Location = ResponseCacheLocation.Any, NoStore = false)]
+      [ResponseCache(Duration = 30, Location = ResponseCacheLocation.Any, NoStore = false)] // Turn off to test Rate limitng policy
       // ResponseCacheLocation.Any -> not just the client or the server (anywhere)
       // NoStore = false means yes we need the data to be stored
       public IEnumerable<string> Get()
@@ -20,7 +20,7 @@ namespace ApiProtection.Controllers
 
       // GET api/<UsersController>/5
       [HttpGet("{id}")]
-      [ResponseCache(Duration = 60 * 60, Location = ResponseCacheLocation.Any, NoStore = false)]
+      [ResponseCache(Duration = 60 * 60, Location = ResponseCacheLocation.Any, NoStore = false)// Turn off to test Rate limitng policy
       // Duration = 60 * 60  for 1 hour   / 60 * 60 * 24 for 1 day 
       public string Get(int id)
       {
